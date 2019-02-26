@@ -10,10 +10,10 @@ package trigger.week5.temperatureconverter;
  * A unit type for the Temperature class.
  */
 public enum TemperatureUnit {
-    /** Fahrenheit */
-    F,
-    /** Celsius */
-    C,
-    /** Kelvin */
-    K,
+	/** Fahrenheit */
+	F,
+	/** Celsius */
+	C,
+	/** Kelvin */
+	K,
 }
