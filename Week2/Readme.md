@@ -23,3 +23,5 @@ All of our programs are console applications so we will very likely be using lot
 I had trouble with the fact that `System.err.println` was slower than `System.out.println` thus, you could call `err` first and `out` would still end up being printed before it. This race condition is ridiculous to be present in NetBean's terminal but I just hacked a way to fix it by sleeping for a hundred milliseconds.
 
 I also was surprised when Java doesn't `Always` require Exceptions to be caught or documented. I'm still not sure how that works as Interger.valueOf(String) throws an exception without requiring a catch but `Thread.sleep(int)` does require it. This will make error handling a bit trickier as NetBeans hover intellisense and documentation display is pretty slow and unreliable.
+
+### Video Presentation: [Link](https://www.youtube.com/watch?v=nMMJxFxTL_8)

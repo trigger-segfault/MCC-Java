@@ -1,12 +1,11 @@
 /*
- * Class Name: JobApplication
+ * Class Name: Main
  * Author: Robert Jordan
  * Date Created: Feb 26, 2019
  * Synopsis: The main class to run the job application form.
  */
 package trigger.week2.jobapplication;
 
-import java.io.BufferedReader;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,9 +49,9 @@ public class Main {
 		
 		System.out.println();
 		System.out.println("Your application has been submitted will be reviewed and we will contact you if needed.");
-		System.out.println();
-		System.out.print("Press any key to continue...");
-		scanner.nextLine();
+		//System.out.println();
+		//System.out.print("Press any key to continue...");
+		//scanner.nextLine();
 	}
 	
 	// <editor-fold defaultstate="expanded" desc="Static Input Methods">

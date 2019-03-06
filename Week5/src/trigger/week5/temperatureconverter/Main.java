@@ -1,5 +1,5 @@
 /*
- * Class Name: TemperatureConverterMain
+ * Class Name: Main
  * Author: Robert Jordan
  * Date Created: Feb 20, 2019
  * Synopsis: The main class to run the temperature converter program loop.

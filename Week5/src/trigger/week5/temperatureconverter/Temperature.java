@@ -37,7 +37,7 @@ public class Temperature {
 	 */
 	@Override
 	public String toString() {
-		return String.valueOf(value) + "º" + String.valueOf(unit);
+		return String.valueOf(value) + /*"º" + */String.valueOf(unit);
 	}
 	/**
 	 * Gets the string representation of the temperature with specified formatting.
