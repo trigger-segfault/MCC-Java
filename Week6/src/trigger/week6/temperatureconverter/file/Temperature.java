@@ -1,11 +1,11 @@
 /*
  * Class Name: Temperature
  * Author: Robert Jordan
- * Date Created: Feb 20, 2019
+ * Date Created: Mar 12, 2019
  * Synopsis: A class containing both a temperature value and unit, which allows
  *           conversion between different units.
  */
-package trigger.week5.temperatureconverter;
+package trigger.week6.temperatureconverter.file;
 
 import java.text.DecimalFormat;
 
@@ -49,6 +49,49 @@ public class Temperature {
 	}
 	// </editor-fold>
 
+	// <editor-fold defaultstate="expanded" desc="ValueOf">
+	/**
+	 * Parses the temperature from the string.
+	 * @param s The temperature string representation.
+	 * @return The parsed temperature.
+	 * @throws NumberFormatException The temperature was input incorrectly.
+	 */
+	public static Temperature valueOf(String s) throws NumberFormatException {
+		if (s.length() == 0)
+			throw new NumberFormatException("Invalid temperature, input is empty!");
+		TemperatureUnit unit;
+		char unitChar = s.charAt(s.length() - 1);
+		if (!Character.isDigit(unitChar) && unitChar != '.') {
+			unit = valueOfUnit(s.substring(s.length() - 1));
+			
+			try {
+				double value = Double.valueOf(s.substring(0, s.length() - 1));
+				return new Temperature(value, unit);
+			} catch (NumberFormatException ex) {
+				throw new NumberFormatException("Invalid temperature value!");
+			}
+		}
+		else {
+			throw new NumberFormatException("Invalid temperature input, expected a unit (F/C/K) at the end!");
+		}
+	}
+	/**
+	 * Parses the temperature unit from the string.
+	 * @param s The string representation of the temperature unit. (F/C/K)
+	 * @return The parsed temperature unit.
+	 * @throws NumberFormatException The temperature unit string was invalid.
+	 */
+	public static TemperatureUnit valueOfUnit(String s) throws NumberFormatException {
+		if (s.length() == 0)
+			throw new NumberFormatException("Invalid temperature unit, input is empty!");
+		try {
+			return TemperatureUnit.valueOf(s);
+		} catch (IllegalArgumentException ex) {
+			throw new NumberFormatException("Invalid temperature unit '" + s + "'!");
+		}
+	}
+	// </editor-fold>
+	
 	// <editor-fold defaultstate="collapsed" desc="Accessors">
 	/**
 	 * Gets the numeric value of the temperature.

@@ -16,6 +16,9 @@ import java.util.logging.Logger;
  */
 class Menu {
 	// <editor-fold defaultstate="collapsed" desc="Constants">
+	/**
+	 * The input value used when the user requests to exit the program.
+	 */
 	private static final String EXIT = "exit";
 	// </editor-fold>
 	
@@ -110,6 +113,7 @@ class Menu {
 		
 		// Configuration settings
 		final int namePadding = weekJars.getNamePadding();
+		// Get the max number of digits in the week numbers
 		final int numberPadding = Math.max(1, (int) Math.log10(weekJars.count()) + 1);
 		final int weeksPerRow = weekJars.getWeeksPerRow();
 		

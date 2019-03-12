@@ -14,6 +14,9 @@ import java.util.Scanner;
  */
 class Menu {
 	// <editor-fold defaultstate="collapsed" desc="Constants">
+	/**
+	 * The input value used when the user requests to exit the program.
+	 */
 	private static final String EXIT = "exit";
 	// </editor-fold>
 	

@@ -26,7 +26,7 @@ public class Main {
 			weekJars = new WeekJarsConfig(pathPath, infoPath);
 		} catch (FileNotFoundException ex) {
 			Menu.printErr(ex.getMessage());
-			System.exit(-1);
+			System.exit(1);
 		}
 		
 		boolean exit;

@@ -6,6 +6,7 @@
  */
 package trigger.week3.weekselector;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,6 +38,8 @@ class WeekRunner {
 		jarPath = jarPath.replaceAll("#", String.valueOf(number));
 		try {
 			ProcessBuilder builder = new ProcessBuilder(new String[]{"java", "-jar", jarPath});
+			// Set the working directory to that of the jar file
+			builder.directory(new File(jarPath).getParentFile());
 			// Make sure the console I/O is being redirected to this process.
 			builder.redirectError(Redirect.INHERIT);
 			builder.redirectInput(Redirect.INHERIT);

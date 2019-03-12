@@ -15,6 +15,9 @@ import java.util.Scanner;
  */
 class Menu {
 	// <editor-fold defaultstate="collapsed" desc="Constants">
+	/**
+	 * The input value used when the user requests to exit the program.
+	 */
 	private static final String EXIT = "exit";
 	private static final String LAST_ANSWER = "ans";
 	// </editor-fold>
@@ -59,7 +62,7 @@ class Menu {
 				System.out.print("Enter a temperature: ");
 
 			input = scanner.nextLine();
-			if (input.equals(EXIT))
+			if (input.equalsIgnoreCase(EXIT))
 				return null;
 
 			TemperatureUnit unit;

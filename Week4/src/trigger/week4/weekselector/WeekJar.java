@@ -81,29 +81,24 @@ public class WeekJar {
 	 * Runs the week's jar file.
 	 * @return The exit code of the run jar file, or WeekJar.RUN_ERROR if an
 	 *         exception occurred while running.
+	 * @throws InterruptedException
+	 * @throws IOException
 	 */
 	public int run() throws InterruptedException, IOException {
-		//try {
-			String[] args = new String[]{"java", "-jar", jarPath};
-			ProcessBuilder builder = new ProcessBuilder(args);
-			// Make sure the console I/O is being redirected to this process.
-			builder.redirectError(ProcessBuilder.Redirect.INHERIT);
-			builder.redirectInput(ProcessBuilder.Redirect.INHERIT);
-			builder.redirectOutput(ProcessBuilder.Redirect.INHERIT);
-			// Run the jar file
-			Process process = builder.start();
-			// Wait for the jar file to finish before returning.
-			process.waitFor();
-			// Return the exit code
-			return process.exitValue();
-		//} catch (Exception ex) {
-		//	return RUN_ERROR; // Likely file not found, so we can just return this.
-		/*} catch (InterruptedException ex) {
-			Logger.getLogger(WeekJar.class.getName()).log(Level.SEVERE, null, ex);
-			return -1; // Oh well, sucks to be you
-		} catch (IOException ex) {
-			return ERROR; // Likely file not found, so we can just return this.
-		}*/
+		String[] args = new String[]{"java", "-jar", jarPath};
+		ProcessBuilder builder = new ProcessBuilder(args);
+		// Set the working directory to that of the jar file
+		builder.directory(new File(jarPath).getParentFile());
+		// Make sure the console I/O is being redirected to this process.
+		builder.redirectError(ProcessBuilder.Redirect.INHERIT);
+		builder.redirectInput(ProcessBuilder.Redirect.INHERIT);
+		builder.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+		// Run the jar file
+		Process process = builder.start();
+		// Wait for the jar file to finish before returning.
+		process.waitFor();
+		// Return the exit code
+		return process.exitValue();
 	}
 	// </editor-fold>
 }
