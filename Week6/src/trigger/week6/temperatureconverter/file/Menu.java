@@ -156,7 +156,7 @@ class Menu {
 	private static Temperature nextTemperature(String display) {
 		Temperature temp = null;
 		do {
-			System.out.print(String.format("%s: ", display));
+			System.out.printf("%s: ", display);
 			String input = scanner.nextLine();
 			// Return null on exit
 			if (input.equalsIgnoreCase(EXIT))
@@ -173,7 +173,7 @@ class Menu {
 	private static TemperatureUnit nextUnit(String display) {
 		TemperatureUnit unit = null;
 		do {
-			System.out.print(String.format("%s: ", display));
+			System.out.printf("%s: ", display);
 			String input = scanner.nextLine();
 			// Return null on exit
 			if (input.equalsIgnoreCase(EXIT))
@@ -192,7 +192,7 @@ class Menu {
 		do {
 			if (input != null && input.length() == 0)
 				printErr("Input cannot be empty!");
-			System.out.print(String.format("%s: ", display));
+			System.out.printf("%s: ", display);
 			input = scanner.nextLine();
 			// Return null on exit
 			if (input.equalsIgnoreCase(EXIT))
@@ -203,7 +203,7 @@ class Menu {
 	private static Integer nextUInt(String display) {
 		Integer value = null;
 		do {
-			System.out.print(String.format("%s: ", display));
+			System.out.printf("%s: ", display);
 			String input = scanner.nextLine();
 			// Return null on exit
 			if (input.equalsIgnoreCase(EXIT))
