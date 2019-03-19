@@ -4,7 +4,7 @@
  * Date Created: Feb 20, 2019
  * Synopsis: An enumeration for all available temperature units.
  */
-package trigger.week7.temperatureconverter.file;
+package trigger.week6.temperatureconverter;
 
 /**
  * A unit type for the Temperature class.

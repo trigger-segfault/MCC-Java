@@ -4,7 +4,7 @@
  * Date Created: Mar 12, 2019
  * Synopsis: The main class to run the temperature file converter program.
  */
-package trigger.week6.temperatureconverter.file;
+package trigger.week7.temperatureconverter.file;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

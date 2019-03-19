@@ -1,11 +1,11 @@
 /*
  * Class Name: Temperature
  * Author: Robert Jordan
- * Date Created: Mar 12, 2019
+ * Date Created: Mar 19, 2019
  * Synopsis: A class containing both a temperature value and unit, which allows
  *           conversion between different units.
  */
-package trigger.week7.temperatureconverter.file;
+package trigger.week6.temperatureconverter;
 
 import java.text.DecimalFormat;
 
@@ -14,7 +14,13 @@ import java.text.DecimalFormat;
  */
 public class Temperature {
 	// <editor-fold defaultstate="collapsed" desc="Fields">
+	/**
+	 * The value of the temperature per the unit.
+	 */
 	private final double value;
+	/**
+	 * The unit of the temperature's value.
+	 */
 	private final TemperatureUnit unit;
 	// </editor-fold>
 
@@ -37,7 +43,8 @@ public class Temperature {
 	 */
 	@Override
 	public String toString() {
-		return String.valueOf(value) + /*"º" + */String.valueOf(unit);
+		// º degree symbol
+		return String.format("%s%s", value, unit);
 	}
 	/**
 	 * Gets the string representation of the temperature with specified formatting.
@@ -45,7 +52,7 @@ public class Temperature {
 	 * @return The formatted string representation of the temperature.
 	 */
 	public String toString(DecimalFormat df) {
-		return df.format(value) + /*"º" + */String.valueOf(unit);
+		return String.format("%s%s", df.format(value), unit);
 	}
 	// </editor-fold>
 

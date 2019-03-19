@@ -5,7 +5,7 @@
  * Synopsis: A class for writing random temperatures to file or reading temperatures
  *           from file.
  */
-package trigger.week6.temperatureconverter.file;
+package trigger.week7.temperatureconverter.file;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

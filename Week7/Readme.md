@@ -1,4 +1,4 @@
-# Week 6 - Week Selector
+# Week 7 - Temperature File Converter
 
 **Author:** Robert Jordan
 

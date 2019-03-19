@@ -5,7 +5,7 @@
  * Synopsis: Displays the program title and runs the menu display and input
  *           logic and outputs the converted temperatures.
  */
-package trigger.week6.temperatureconverter.file;
+package trigger.week7.temperatureconverter.file;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
