@@ -1,0 +1,9 @@
+#Unit	Name					ExRateUSD	Fractional
+USD		"United States Dollar"	1.0			100
+JPY		"Japanese Yen"			0.0091		-
+AUD		"Australian Dollar"		0.71		100
+KRW		"South Korean Won"		0.00088		-
+ISK		"Icelandic Krona"		0.0083		100
+EUR		"Euro"					1.13		100
+CHF		"Swiss Franc"			1.01		100
+COP		"Colombian Peso"		0.00032		100
