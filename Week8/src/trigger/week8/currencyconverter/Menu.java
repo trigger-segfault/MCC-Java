@@ -229,7 +229,6 @@ class Menu {
 		CurrencyUnit unit = null;
 		do {
 			String input = nextLine(display);
-			// Throw on exit
 
 			try {
 				unit = Currency.valueOfUnit(input);
