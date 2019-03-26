@@ -1,4 +1,4 @@
-#Unit	Name					ExRateUSD	Fractional
+#ISO	Name					ExRateUSD	Fractional
 USD		"United States Dollar"	1.0			100
 JPY		"Japanese Yen"			0.0091		-
 AUD		"Australian Dollar"		0.71		100

@@ -230,8 +230,6 @@ class Menu {
 		do {
 			String input = nextLine(display);
 			// Throw on exit
-			if (input.equalsIgnoreCase(EXIT))
-				throw new RequestExitException();
 
 			try {
 				unit = Currency.valueOfUnit(input);

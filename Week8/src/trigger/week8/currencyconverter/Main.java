@@ -19,7 +19,7 @@ public class Main {
 		try {
 			while (true) {
 				try {
-				Menu.run();
+					Menu.run();
 				} catch (RequestBackException ex) {
 					System.out.println();
 					// Continue the loop
