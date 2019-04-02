@@ -7,7 +7,7 @@
 package trigger.week8.currencyconverter;
 
 /**
- * The menu class to run logic for the currency file converter program.
+ * The main class for the currency file converter program.
  */
 public class Main {
 	/**
