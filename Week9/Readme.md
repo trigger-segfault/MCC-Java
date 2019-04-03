@@ -8,7 +8,7 @@ For this week, I basically ported most of my C# final project to Java in anticip
 
 Instead of extension classes, I created `Utils` classes for `string.Center()` and `string.wordEllipses.split()`. Along with those two methods, the `StringUtils` class got many more helper methods for defining methods that Java has failed to implement themselves.
 
-I was hoping to create an `ArrayUtils` class for easy casting to a typed array but I learned pretty quickly that Java generics are all a facade for casting hell that's done during runtime. No only is it hard to implement any kind of generics within the compiler, they'll probably end up being inneficient during runtime once you do get them working (if you manage to get them working).
+I was hoping to create an `ArrayUtils` class for easy casting to a typed array but I learned pretty quickly that Java generics are all a facade for casting hell that's done during runtime. No only is it hard to implement any kind of generics within the compiler, they'll probably end up being inefficient during runtime once you do get them working (if you manage to get them working).
 
 As always, I have kept around the `RequestExitException` and `RequestBackException` for line input, and I have changed the `Menu` class into the `MenuUtils` class which has tons of `next` methods for reading different types of input. I also added a `clearScreen()` method and `waitForInput()` methods.
 
