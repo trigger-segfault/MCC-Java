@@ -77,7 +77,6 @@ public class MissingFilesMenu extends Menu {
 	}
 	@Override
 	protected boolean handleToken(String token, Align align) {
-		Console.printLine(token);
 		if (token.equals(MISSING_FILES_TOKEN)) {
 			for (int i = 0; i < missingFiles.length; i++) {
 				String file = missingFiles[i];

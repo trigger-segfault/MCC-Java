@@ -7,6 +7,7 @@
  */
 package trigger.finalproject;
 
+import trigger.finalproject.helloworld.*;
 import trigger.finalproject.menus.*;
 import trigger.finalproject.utilities.*;
 
@@ -23,6 +24,18 @@ public class MainMenuDriver extends MenuDriver {
 	public Menu JOB_APPLICATION_MENU = new Menu("resources/JobApplicationMenu.txt");
 	public Menu TEMPERATURE_MENU = new Menu("resources/TemperatureMenu.txt");
 	public Menu CURRENCY_MENU = new Menu("resources/CurrencyMenu.txt");
+	
+	// HELLO WORLD:
+	private static final String HELLO_WORLD_DRAW_PATH = "resources/HelloWorldDrawMenu.txt";
+	public Menu HELLO_WORLD_STANDARD = new HelloWorldStandard(HELLO_WORLD_DRAW_PATH);
+	public Menu HELLO_WORLD_DIVERGENCE = new HelloWorldDivergence(HELLO_WORLD_DRAW_PATH);
+	
+	// JOB APPLICATION:
+	
+	// TEMPERATURE CONVERTER:
+	
+	// CURRENCY CONVERTER:
+	
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="expanded" desc="Constructors">
@@ -46,6 +59,8 @@ public class MainMenuDriver extends MenuDriver {
 			Screen.EXIT,
 		};
 		HELLO_WORLD_MENU.choices = new Screen[] {
+			HELLO_WORLD_STANDARD,
+			HELLO_WORLD_DIVERGENCE,
 			Screen.MAIN,
 		};
 		// TODO: Job Application Menu Choices

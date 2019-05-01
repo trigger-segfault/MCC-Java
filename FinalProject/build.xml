@@ -72,7 +72,8 @@
     -->
     <target name="-post-compile">
         <copy todir="${dist.dir}/resources" overwrite="true">
-			  <fileset dir="resources" includes="**"/>
-		</copy>
+			      <fileset dir="resources" includes="**"/>
+		    </copy>
+        <copy file="CurrencyUnits.txt" todir="${dist.dir}" overwrite="true"/>
     </target>
 </project>

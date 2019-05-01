@@ -115,8 +115,9 @@ public abstract class MenuDriver {
 						ScreenAction action = (ScreenAction) nextScreen;
 						switch (action.type) {
 							case LAST:
+								Screen swap = lastScreen;
 								lastScreen = currentScreen;
-								currentScreen = lastScreen;
+								currentScreen = swap;
 								break;
 							case MAIN:
 								lastScreen = currentScreen;

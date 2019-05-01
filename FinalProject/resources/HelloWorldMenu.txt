@@ -1,9 +1,6 @@
 ﻿
-What does the fo-..programmer say?
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~    
-   /  .-------------------.  \    
-   /  |    Hello World!   |  \    
-   /  `-------------------'  \    
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+Display Hello World
 
-1. Back to the Project Selection
+1. Standard                     
+2. Divergence Animation         
+3. Back to the Project Selection
