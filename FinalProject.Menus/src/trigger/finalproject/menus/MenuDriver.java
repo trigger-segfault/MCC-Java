@@ -32,7 +32,6 @@ public abstract class MenuDriver {
 	private ExceptionMenu exceptionMenu;
 	// </editor-fold>
 	
-	
 	// <editor-fold defaultstate="expanded" desc="Constructors">
 	/**
 	 * Constructs the base Menu Driver.
@@ -41,7 +40,6 @@ public abstract class MenuDriver {
 		screens = new ArrayList<>();
 	}
 	// </editor-fold>
-	
 	
 	// <editor-fold defaultstate="expanded" desc="Setup">
 	/**

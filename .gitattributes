@@ -1,0 +1,2 @@
+# Remove RTF language identification
+*.rtf linguist-detectable=false
