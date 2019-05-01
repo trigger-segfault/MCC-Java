@@ -1,0 +1,10 @@
+﻿
+Temperature Converter
+
+Choose how you would like to convert temperatures.
+
+Please make a selection:
+
+1. Temperatures From Input      
+2. Temperatures From File       
+3. Back to the Project Selection

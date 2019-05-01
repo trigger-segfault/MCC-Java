@@ -1,0 +1,10 @@
+﻿
+Welcome to the Project Selection Menu
+
+Please make a selection:
+
+1. Hello World          
+2. Job Application      
+3. Temperature Converter
+4. Currency Converter   
+5. Exit                 

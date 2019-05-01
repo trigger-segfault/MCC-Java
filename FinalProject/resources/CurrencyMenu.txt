@@ -1,0 +1,10 @@
+﻿
+Currency Converter
+
+Choose how you would like to convert currencies.
+
+Please make a selection:
+
+1. Currencies From Input        
+2. Currencies From File         
+3. Back to the Project Selection
