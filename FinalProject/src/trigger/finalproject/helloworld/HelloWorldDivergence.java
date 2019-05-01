@@ -1,5 +1,5 @@
 /*
- * Class Name: HelloWorldDivergenceScreen
+ * Class Name: HelloWorldDivergence
  * Author: Robert Jordan
  * Date Created: May 1, 2019
  * Synopsis: A Screen for timing and drawing fancy Hello World divergence

@@ -1,9 +1,8 @@
 /*
- * Class Name: HelloWorldDivergenceScreen
+ * Class Name: HelloWorldStandard
  * Author: Robert Jordan
  * Date Created: May 1, 2019
- * Synopsis: A Screen for timing and drawing fancy Hello World divergence
- *           animations.
+ * Synopsis: A Screen for drawing Hello World in a completely normal fashion.
  */
 package trigger.finalproject.helloworld;
 
@@ -11,7 +10,7 @@ import trigger.finalproject.menus.*;
 import trigger.finalproject.utilities.*;
 
 /**
- * A Screen for timing and drawing fancy Hello World divergence animations.
+ * A Screen for drawing Hello World in a completely normal fashion.
  */
 public class HelloWorldStandard extends HelloWorldDrawMenu {
 	
