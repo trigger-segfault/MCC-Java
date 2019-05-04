@@ -2,5 +2,3 @@
 What does the fo-..programmer say?
 
 $HELLOWORLD$
-
-1. Back to the Project Selection

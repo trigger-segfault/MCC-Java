@@ -12,7 +12,6 @@ import trigger.finalproject.utilities.*;
  * A Screen for drawing Hello World in a completely normal fashion.
  */
 public class HelloWorldStandard extends HelloWorldDrawMenu {
-	
 	// <editor-fold defaultstate="expanded" desc="Constructors">
 	/**
 	 * Constructs the Hello World Menu with the specified text file path to
@@ -20,7 +19,7 @@ public class HelloWorldStandard extends HelloWorldDrawMenu {
 	 * @param textFile The path to the text file to print.
 	 */
 	public HelloWorldStandard(String textFile) {
-		super(textFile);
+		super(textFile, null);
 	}
 	// </editor-fold>
 	

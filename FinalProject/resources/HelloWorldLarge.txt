@@ -1,0 +1,11 @@
+﻿  HH  HH  EEEEEE  LL      LL       OOOO   
+  HH  HH  EE      LL      LL      OO  OO  
+  HHHHHH  EEEEEE  LL      LL      OO  OO  
+  HH  HH  EE      LL      LL      OO  OO  
+  HH  HH  EEEEEE  LLLLLL  LLLLLL   OOOO   
+
+WW      WW   OOOO   RRRRR   LL      DDDD  
+WW      WW  OO  OO  RR  RR  LL      DD  DD
+WW  WW  WW  OO  OO  RRRRR   LL      DD  DD
+WW  WW  WW  OO  OO  RR  RR  LL      DD  DD
+ WWWWWWWW    OOOO   RR  RR  LLLLLL  DDDD  

@@ -1,7 +1,7 @@
 /*
  * Class Name: ScreenDriver
  * Author: Robert Jordan
- * Date Created: May 2, 2019
+ * Date Created: May 3, 2019
  * Synopsis: A class that handles the screen transition and exception logic.
  */
 package trigger.finalproject.utilities.menus;
@@ -83,7 +83,7 @@ public abstract class ScreenDriver extends ScreenModule {
 			if (!missingFiles.isEmpty()) {
 				missingFilesMenu.missingFiles =
 						missingFiles.toArray(new String[missingFiles.size()]);
-				missingFilesMenu.print();
+				missingFilesMenu.print(this);
 				missingFilesMenu.run(this);
 				return;
 			}
@@ -92,41 +92,38 @@ public abstract class ScreenDriver extends ScreenModule {
 			Screen lastScreen = currentScreen;
 			
 			do {
-				currentScreen.print();
+				ScreenModule owner = findOwner(currentScreen);
+				currentScreen.print(owner);
 				Screen nextScreen = null;
 				try {
-					ScreenModule owner = findOwner(currentScreen);
 					nextScreen = currentScreen.run(owner);
-					if (nextScreen instanceof ScreenAction) {
-						ScreenAction action = (ScreenAction) nextScreen;
-						switch (action.type) {
-							case LAST:
-								Screen swap = lastScreen;
-								lastScreen = currentScreen;
-								currentScreen = swap;
-								break;
-							case MAIN:
-								lastScreen = currentScreen;
-								currentScreen = mainMenu;
-								break;
-							case CURRENT: /* Do nothing  */ break;
-							case EXIT: /* Leave the loop */ return;
-						}
+				} catch (RequestException ex) {
+					nextScreen = currentScreen.onRequst(owner, ex.type);
+				}
+				if (nextScreen instanceof ScreenAction) {
+					ScreenAction action = (ScreenAction) nextScreen;
+					switch (action.type) {
+						case LAST:
+							Screen swap = lastScreen;
+							lastScreen = currentScreen;
+							currentScreen = swap;
+							break;
+						case MAIN:
+							lastScreen = currentScreen;
+							currentScreen = mainMenu;
+							break;
+						case CURRENT: /* Do nothing  */ break;
+						case EXIT: /* Leave the loop */ return;
 					}
-					else if (nextScreen != currentScreen) {
-						lastScreen = currentScreen;
-						currentScreen = nextScreen;
-					}
-				} catch (RequestBackException ex) {
+				}
+				else if (nextScreen != currentScreen) {
 					lastScreen = currentScreen;
-					currentScreen = mainMenu;
-				} catch (RequestExitException ex) {
-					return;
+					currentScreen = nextScreen;
 				}
 			} while (currentScreen != null);
 		} catch (Exception ex) {
 			exceptionMenu.exception = ex;
-			exceptionMenu.print();
+			exceptionMenu.print(this);
 			exceptionMenu.run(this);
 		}
 	}

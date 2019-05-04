@@ -124,7 +124,6 @@ class CurrencyFileIO {
 	}
 	// </editor-fold>
 	
-	
 	// <editor-fold defaultstate="expanded" desc="GenTemperaturesFile">
 	/**
 	 * Generates a random set of temperatures and writes it to the file path.

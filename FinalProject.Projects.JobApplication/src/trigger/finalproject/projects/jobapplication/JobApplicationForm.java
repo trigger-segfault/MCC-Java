@@ -1,7 +1,7 @@
 /*
  * Class Name: JobApplicationForm
  * Author: Robert Jordan
- * Date Created: May 2, 2019
+ * Date Created: May 3, 2019
  * Synopsis: A form with all fields to fill out in a Job Application.
  */
 package trigger.finalproject.projects.jobapplication;
@@ -12,7 +12,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 import trigger.finalproject.utilities.*;
 
 /**
@@ -39,9 +38,11 @@ public class JobApplicationForm {
 	public Calendar timestamp;
 	// </editor-fold>
 	
+	// <editor-fold defaultstate="expanded" desc="Accessors">
 	public String getTimestamp() {
 		return DATE_FORMAT.format(timestamp.getTime());
 	}
+	// </editor-fold>
 	
 	// <editor-fold defaultstate="expanded" desc="ToString">
 	@Override
@@ -75,67 +76,8 @@ public class JobApplicationForm {
 		return form;
 	}
 	// </editor-fold>
+	
 	// <editor-fold defaultstate="expanded" desc="I/O">
-	
-	public void print() {
-		print(0);
-	}
-	public void print(int indent) {
-		String p = StringUtils.repeat(' ', indent);
-		printArg(p + "Submitted at", getTimestamp());
-		Console.printLine();
-		
-		Console.printLine(p + "== Personal Information ==");
-		printArg(p + "First Name", firstName);
-		printArg(p + " Last Name", lastName);
-		printArg(p + " Address", address);
-		printArg(p + "    City", city);
-		printArg(p + "   State", state);
-		printArg(p + "Zip Code", zip);
-		printArg(p + "   Email", email);
-		printArg(p + "   Phone", phone);
-		Console.printLine();
-		
-		Console.printLine(p + "== Work Experience ==");
-		printArg(p + "Worked with us before", workedHereBefore);
-		if (workedHereBefore)
-			printArg(p + "Previous Job", previousJob);
-		printArg(p + "Years of experience", workedHereBefore);
-	}
-	public static JobApplicationForm nextForm() throws RequestExitException, RequestBackException {
-		JobApplicationForm form = new JobApplicationForm();
-		
-		Console.printLine("== Personal Information ==");
-		form.firstName	= InputUtils.nextLine("First Name");
-		form.lastName	= InputUtils.nextLine(" Last Name");
-		form.address	= InputUtils.nextLine(" Address");
-		form.city		= InputUtils.nextLine("    City");
-		form.state		= InputUtils.nextLine("   State");
-		form.zip		= InputUtils.nextUInt("Zip Code");
-		form.email		= InputUtils.nextLine("   Email");
-		form.phone		= InputUtils.nextLine("   Phone");
-		
-		Console.printLine();
-		Console.printLine("== Work Experience ==");
-		form.workedHereBefore = InputUtils.nextBool("Have you worked with us before");
-		if (form.workedHereBefore)
-			form.previousJob = InputUtils.nextLine("What was your previous position with us");
-		form.yearsExperience = InputUtils.nextUInt("Years of experience");
-		
-		form.timestamp = Calendar.getInstance();
-		Console.printLine();
-		printArg("Submitted at", form.getTimestamp());
-		return form;
-	}
-	
-	private static void printArg(String title, Object arg) {
-		if (arg instanceof Boolean) {
-			Boolean b = (Boolean) arg;
-			arg = (b ? "yes" : "no");
-		}
-		Console.printLine("%s: %s", title, arg);
-	}
-	
 	public static JobApplicationForm[] readAllForms(String path)
 			throws FileNotFoundException, IOException
 	{

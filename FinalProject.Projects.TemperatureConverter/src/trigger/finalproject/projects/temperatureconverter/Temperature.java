@@ -17,7 +17,7 @@ public class Temperature {
 	/**
 	 * The default decimal format used for toString().
 	 */
-	private static final DecimalFormat df = new DecimalFormat("#.00");
+	private static final DecimalFormat df = new DecimalFormat("0.##");
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="Fields">

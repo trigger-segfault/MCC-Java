@@ -1,7 +1,7 @@
 /*
  * Class Name: ScreenModuleCurrencyConverter
  * Author: Robert Jordan
- * Date Created: May 2, 2019
+ * Date Created: May 3, 2019
  * Synopsis: The screen module for the Currency Converter.
  */
 package trigger.finalproject.projects.currencyconverter;
@@ -15,6 +15,10 @@ import trigger.finalproject.utilities.menus.*;
 public class ScreenModuleCurrency extends ScreenModule {
 	// <editor-fold defaultstate="expanded" desc="Menus">
 	public Menu MENU = new Menu("resources/CurrencyMenu.txt");
+	public Menu INPUT = new CurrencyInputMenu("resources/CurrencyInputMenu.txt");
+	public Menu FILE = new CurrencyFileMenu("resources/CurrencyFileMenu.txt");
+	public Menu GENERATE = new CurrencyGenMenu("resources/CurrencyGenMenu.txt");
+	public Menu LIST = new CurrencyListMenu("resources/CurrencyListMenu.txt");
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="expanded" desc="Constructors">
@@ -23,10 +27,16 @@ public class ScreenModuleCurrency extends ScreenModule {
 	 */
 	public ScreenModuleCurrency() {
 		addScreen(MENU);
+		addScreen(INPUT);
+		addScreen(FILE);
+		addScreen(GENERATE);
+		addScreen(LIST);
 		
 		MENU.choices = new Screen[] {
-			ScreenAction.CURRENT,
-			ScreenAction.CURRENT,
+			INPUT,
+			FILE,
+			GENERATE,
+			LIST,
 			ScreenAction.MAIN,
 		};
 	}

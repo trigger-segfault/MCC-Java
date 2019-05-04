@@ -20,7 +20,6 @@ public class JobApplicationPrintMenu extends Menu {
 	private static final String FORM_TOKEN = "FORM";
 	// </editor-fold>
 	
-	
 	// <editor-fold defaultstate="collapsed" desc="Fields">
 	/**
 	 * The job application form to print.
@@ -75,13 +74,6 @@ public class JobApplicationPrintMenu extends Menu {
 			return true;
 		}
 		return false;
-	}
-	private static void printArg(String title, Object arg) {
-		if (arg instanceof Boolean) {
-			Boolean b = (Boolean) arg;
-			arg = (b ? "yes" : "no");
-		}
-		Console.printLine("%s: %s", title, arg);
 	}
 	// </editor-fold>
 }

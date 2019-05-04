@@ -1,15 +1,11 @@
 /*
  * Class Name: ScreenAction
  * Author: Robert Jordan
- * Date Created: May 2, 2019
+ * Date Created: May 3, 2019
  * Synopsis: A special Screen type that performs an action based on the
  *           ScreenActionType enum type.
  */
 package trigger.finalproject.utilities.menus;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import trigger.finalproject.utilities.*;
 
 /**
  * A special Screen type that performs an action based on the ScreenActionType
@@ -20,19 +16,19 @@ public final class ScreenAction extends Screen {
 	/**
 	 * A screen action to exit the application.
 	 */
-	public static final Screen EXIT = new ScreenAction(ScreenActionType.EXIT);
+	public static final ScreenAction EXIT = new ScreenAction(ScreenActionType.EXIT);
 	/**
 	 * A screen action to go to the main menu.
 	 */
-	public static final Screen MAIN = new ScreenAction(ScreenActionType.MAIN);
+	public static final ScreenAction MAIN = new ScreenAction(ScreenActionType.MAIN);
 	/**
 	 * A screen action to go to the last screen.
 	 */
-	public static final Screen LAST = new ScreenAction(ScreenActionType.LAST);
+	public static final ScreenAction LAST = new ScreenAction(ScreenActionType.LAST);
 	/**
 	 * A screen action to go to the current screen again.
 	 */
-	public static final Screen CURRENT = new ScreenAction(ScreenActionType.CURRENT);
+	public static final ScreenAction CURRENT = new ScreenAction(ScreenActionType.CURRENT);
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="Fields">
@@ -54,10 +50,10 @@ public final class ScreenAction extends Screen {
 	
 	// <editor-fold defaultstate="expanded" desc="Screen Overrides">
 	@Override
-	public void print() throws FileNotFoundException, IOException {
+	public void print(ScreenModule owner) {
 	}
 	@Override
-	public Screen run(ScreenModule owner) throws RequestExitException, RequestBackException {
+	public Screen run(ScreenModule owner) {
 		return null;
 	}
 	// </editor-fold>

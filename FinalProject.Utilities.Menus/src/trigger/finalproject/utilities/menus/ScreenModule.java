@@ -1,7 +1,7 @@
 /*
  * Class Name: MenuDriverModule
  * Author: Robert Jordan
- * Date Created: May 2, 2019
+ * Date Created: May 3, 2019
  * Synopsis: The base module class that can contain other modules and screens,
  *           or be extended for the ScreenDriver class.
  */
@@ -9,7 +9,7 @@ package trigger.finalproject.utilities.menus;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import trigger.finalproject.utilities.FileUtils;
+import trigger.finalproject.utilities.*;
 
 /**
  * The base module class that can contain other modules and screens, or be
@@ -26,7 +26,6 @@ public abstract class ScreenModule {
 	 */
 	private final ArrayList<ScreenModule> modules;
 	// </editor-fold>
-	
 	
 	// <editor-fold defaultstate="expanded" desc="Constructors">
 	/**
@@ -134,11 +133,25 @@ public abstract class ScreenModule {
 	
 	// <editor-fold defaultstate="expanded" desc="Virtual Methods">
 	/**
+	 * Called when a Request exception is raised.
+	 * @param type The type of the request exception.
+	 * @return The new screen to navigate to.
+	 */
+	public Screen onRequst(RequestType type) {
+		if (type == RequestType.EXIT)
+			return ScreenAction.EXIT;
+		if (type == RequestType.CANCEL)
+			return ScreenAction.LAST;
+		if (type == RequestType.RESTART)
+			return ScreenAction.CURRENT;
+		return null;
+	}
+	/**
 	 * Adds the file to the missing files list if it does not exist.
 	 * @param path The file to check for.
 	 * @param files The missing files list.
 	 */
-	protected void addMissingFile(String path, Collection<String> files) {
+	protected final void addMissingFile(String path, Collection<String> files) {
 		if (!FileUtils.isFile(path) && !files.contains(path))
 			files.add(path);
 	}

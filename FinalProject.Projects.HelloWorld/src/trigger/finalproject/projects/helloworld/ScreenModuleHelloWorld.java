@@ -1,7 +1,7 @@
 /*
  * Class Name: ScreenModuleHelloWorld
  * Author: Robert Jordan
- * Date Created: May 2, 2019
+ * Date Created: May 3, 2019
  * Synopsis: The screen module for the Hello World.
  */
 package trigger.finalproject.projects.helloworld;
@@ -17,7 +17,9 @@ public class ScreenModuleHelloWorld extends ScreenModule {
 	
 	private static final String DRAW_PATH = "resources/HelloWorldDrawMenu.txt";
 	public Menu STANDARD = new HelloWorldStandard(DRAW_PATH);
-	public Menu DIVERGENCE = new HelloWorldDivergence(DRAW_PATH);
+	public Menu FANCY = new HelloWorldDrawMenu(DRAW_PATH, "resources/HelloWorldFancy.txt");
+	public Menu LARGE = new HelloWorldDrawMenu(DRAW_PATH, "resources/HelloWorldLarge.txt");
+	public Menu DIVERGENCE = new HelloWorldDivergence(DRAW_PATH, "resources/HelloWorldDivergenceMask.txt");
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="expanded" desc="Constructors">
@@ -27,10 +29,14 @@ public class ScreenModuleHelloWorld extends ScreenModule {
 	public ScreenModuleHelloWorld() {
 		addScreen(MENU);
 		addScreen(STANDARD);
+		addScreen(FANCY);
+		addScreen(LARGE);
 		addScreen(DIVERGENCE);
 		
 		MENU.choices = new Screen[] {
 			STANDARD,
+			FANCY,
+			LARGE,
 			DIVERGENCE,
 			ScreenAction.MAIN,
 		};

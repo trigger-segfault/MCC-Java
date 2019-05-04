@@ -1,13 +1,11 @@
 /*
  * Class Name: Screen
  * Author: Robert Jordan
- * Date Created: May 2, 2019
+ * Date Created: May 3, 2019
  * Synopsis: Abstract console interface.
  */
 package trigger.finalproject.utilities.menus;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Collection;
 import trigger.finalproject.utilities.*;
 
@@ -29,24 +27,33 @@ public abstract class Screen {
 	// <editor-fold defaultstate="expanded" desc="Abstract/Virtual Methods">
 	/**
 	 * Prints the menu to the screen.
-	 * @throws FileNotFoundException The menu text file was not found.
-	 * @throws IOException An error occurred while reading the menu file.
+	 * @param owner The screen module containing this screen.
+	 * @throws Exception An exception occurred.
 	 */
-	public abstract void print() throws FileNotFoundException, IOException;
+	public abstract void print(ScreenModule owner) throws Exception;
 	/**
 	 * Runs the menu to the screen and returns the next Screen or ScreenAction.
 	 * @param owner The screen module containing this screen.
 	 * @return The next Screen or ScreenAction.
-	 * @throws RequestExitException User requested to exit program.
-	 * @throws RequestBackException User requested to go back one level.
+	 * @throws RequestException User requested a special action from the program.
+	 * @throws Exception An exception occurred.
 	 */
-	public abstract Screen run(ScreenModule owner) throws RequestExitException, RequestBackException;
+	public abstract Screen run(ScreenModule owner) throws RequestException, Exception;
+	/**
+	 * Called when a Request exception is raised.
+	 * @param owner The screen module containing this screen.
+	 * @param type The type of the request exception.
+	 * @return The new screen to navigate to.
+	 */
+	public Screen onRequst(ScreenModule owner, RequestType type) {
+		return owner.onRequst(type);
+	}
 	/**
 	 * Adds the file to the missing files list if it does not exist.
 	 * @param path The file to check for.
 	 * @param files The missing files list.
 	 */
-	protected void addMissingFile(String path, Collection<String> files) {
+	protected final void addMissingFile(String path, Collection<String> files) {
 		if (!FileUtils.isFile(path) && !files.contains(path))
 			files.add(path);
 	}

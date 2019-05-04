@@ -1,0 +1,2 @@
+﻿
+Temperatures File Generator

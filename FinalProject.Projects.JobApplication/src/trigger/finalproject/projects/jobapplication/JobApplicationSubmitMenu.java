@@ -45,7 +45,7 @@ public class JobApplicationSubmitMenu extends Menu {
 	
 	// <editor-fold defaultstate="expanded" desc="Menu Overrides">
 	@Override
-	public Screen run(ScreenModule owner) throws RequestExitException, RequestBackException {
+	public Screen run(ScreenModule owner) throws RequestException, Exception {
 		JobApplicationForm form = new JobApplicationForm();
 		
 		// indent (p stands for padding)
@@ -89,10 +89,8 @@ public class JobApplicationSubmitMenu extends Menu {
 			return super.run(owner);
 		}
 		
-		try {
-			OutputUtils.printFile(submittedTextFile, WIDTH, alignment);
-			Console.printLine();
-		} catch (IOException ex) { }
+		OutputUtils.printFile(submittedTextFile, WIDTH, alignment);
+		Console.printLine();
 		return super.run(owner);
 	}
 	@Override

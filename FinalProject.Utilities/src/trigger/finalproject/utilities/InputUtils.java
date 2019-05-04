@@ -1,7 +1,7 @@
 /*
  * Class Name: InputUtils
  * Author: Robert Jordan
- * Date Created: May 1, 2019
+ * Date Created: May 3, 2019
  * Synopsis: Utility methods for special input handling.
  */
 package trigger.finalproject.utilities;
@@ -28,50 +28,42 @@ public class InputUtils {
 	// <editor-fold defaultstate="expanded" desc="WaitForInput">
 	/**
 	 * Waits for the user to press enter.
-	 * @throws RequestExitException
+	 * @throws RequestException
 	 */
-	public static void waitForInput() throws RequestExitException {
-		try {
-			next();
-		} catch (RequestBackException ex) {
-			// Ignore this
-		}
+	public static void waitForInput()
+			throws RequestException
+	{
+		next();
 	}
 	/**
 	 * Leaves a message and waits for the user to press enter
 	 * @param message The message to display before waiting for enter.
-	 * @throws RequestExitException
+	 * @throws RequestException
 	 */
-	public static void waitForInput(String message) throws RequestExitException {
-		try {
-			next(message);
-		} catch (RequestBackException ex) {
-			// Ignore this
-		}
+	public static void waitForInput(String message)
+			throws RequestException
+	{
+		next(message);
 	}
 	/**
 	 * A waitForInput shortcut that leaves the message "Press enter to continue...".
-	 * @throws RequestExitException
+	 * @throws RequestException
 	 */
-	public static void pressEnterToContinue() throws RequestExitException {
-		try {
-			System.out.print(Console.PRESS_ENTER_TO_CONTINUE);
-			next();
-		} catch (RequestBackException ex) {
-			// Ignore this
-		}
+	public static void pressEnterToContinue()
+			throws RequestException
+	{
+		System.out.print(Console.PRESS_ENTER_TO_CONTINUE);
+		next();
 	}
 	/**
 	 * A waitForInput shortcut that leaves the message "Press enter to exit...".
-	 * @throws RequestExitException
+	 * @throws RequestException
 	 */
-	public static void pressEnterToExit() throws RequestExitException {
-		try {
-			System.out.print(Console.PRESS_ENTER_TO_EXIT);
-			next();
-		} catch (RequestBackException ex) {
-			// Ignore this
-		}
+	public static void pressEnterToExit()
+			throws RequestException
+	{
+		System.out.print(Console.PRESS_ENTER_TO_EXIT);
+		next();
 	}
 	// </editor-fold>
 	
@@ -79,19 +71,19 @@ public class InputUtils {
 	/**
 	 * Reads the next line, allowing the contents to be empty.
 	 * @return The read line.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static String next()
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		String input = Console.scanner.nextLine();
-		// Throw on exit
-		if (input.equalsIgnoreCase(EXIT))
-			throw new RequestExitException();
-		// Throw on back
-		if (input.equalsIgnoreCase(BACK))
-			throw new RequestBackException();
+		// Check all request types
+		RequestType[] types = RequestType.values();
+		for (int i = 0; i < types.length; i++) {
+			RequestType type = types[i];
+			if (type.equalsCommand(input))
+				throw new RequestException(type);
+		}
 		return input;
 	}
 	/**
@@ -99,11 +91,10 @@ public class InputUtils {
 	 * empty.
 	 * @param message The message to print before getting input.
 	 * @return The read line.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static String next(String message)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		System.out.printf("%s: ", message);
 		return next();
@@ -111,11 +102,10 @@ public class InputUtils {
 	/**
 	 * Reads the next line without allowing the contents to be empty.
 	 * @return The read line.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static String nextLine()
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		String input = null;
 		do {
@@ -130,11 +120,10 @@ public class InputUtils {
 	 * to be empty.
 	 * @param message The message to print before getting input.
 	 * @return The read line.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static String nextLine(String message)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		String input = null;
 		do {
@@ -149,13 +138,94 @@ public class InputUtils {
 	 * @param message The message to print before getting input.
 	 * @param defaultValue The default value when the input is empty.
 	 * @return The read line.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static String nextLineDef(String message, String defaultValue)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		String input = next(message);
+		if (input.length() == 0)
+			return defaultValue;
+		return input;
+	}
+	/**
+	 * Prints the message and reads the next valid file path.
+	 * @param message The message to print before getting input.
+	 * @return The read line.
+	 * @throws RequestException
+	 */
+	public static String nextFile(String message)
+			throws RequestException
+	{
+		String input = null;
+		do {
+			if (input != null) {
+				if (input.length() == 0)
+					Console.printError("File path cannot be empty!");
+				else if (!FileUtils.isFile(input))
+					Console.printError("File path does not exist!");
+			}
+			input = next(message);
+		} while (input.length() == 0 || !FileUtils.isFile(input));
+		return input;
+	}
+	/**
+	 * Prints the message and reads the next valid file path.
+	 * @param message The message to print before getting input.
+	 * @param defaultValue The default value when the input is empty.
+	 * @return The read line.
+	 * @throws RequestException
+	 */
+	public static String nextFileDef(String message, String defaultValue)
+			throws RequestException
+	{
+		String input = null;
+		do {
+			if (input != null && !FileUtils.isFile(input))
+				Console.printError("File path does not exist!");
+			input = next(message);
+		} while (!FileUtils.isFile(input));
+		if (input.length() == 0)
+			return defaultValue;
+		return input;
+	}
+	/**
+	 * Prints the message and reads the next valid directory path.
+	 * @param message The message to print before getting input.
+	 * @return The read line.
+	 * @throws RequestException
+	 */
+	public static String nextDirectory(String message)
+			throws RequestException
+	{
+		String input = null;
+		do {
+			if (input != null) {
+				if (input.length() == 0)
+					Console.printError("Directory path cannot be empty!");
+				else if (!FileUtils.isDirectory(input))
+					Console.printError("Directory path does not exist!");
+			}
+			input = next(message);
+		} while (input.length() == 0 || !FileUtils.isDirectory(input));
+		return input;
+	}
+	/**
+	 * Prints the message and reads the next valid directory path.
+	 * @param message The message to print before getting input.
+	 * @param defaultValue The default value when the input is empty.
+	 * @return The read line.
+	 * @throws RequestException
+	 */
+	public static String nextDirectoryDef(String message, String defaultValue)
+			throws RequestException
+	{
+		String input = null;
+		do {
+			if (input != null && !FileUtils.isDirectory(input))
+				Console.printError("Directory path does not exist!");
+			input = next(message);
+		} while (input.length() == 0 || !FileUtils.isDirectory(input));
 		if (input.length() == 0)
 			return defaultValue;
 		return input;
@@ -164,11 +234,10 @@ public class InputUtils {
 	 * Asks the user for a valid integer.
 	 * @param message The message to display before waiting for input.
 	 * @return The parsed integer.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Integer nextInt(String message)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		Integer value = null;
 		do {
@@ -190,11 +259,10 @@ public class InputUtils {
 	 * @param message The message to display before waiting for input.
 	 * @param defaultValue The default value when the input is empty.
 	 * @return The parsed integer.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Integer nextIntDef(String message, int defaultValue)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		Integer value = null;
 		do {
@@ -215,11 +283,10 @@ public class InputUtils {
 	 * Asks the user for a valid integer greater than or equal to zero.
 	 * @param message The message to display before waiting for input.
 	 * @return The parsed integer.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Integer nextUInt(String message)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		Integer value = null;
 		do {
@@ -236,11 +303,10 @@ public class InputUtils {
 	 * @param message The message to display before waiting for input.
 	 * @param defaultValue The default value when the input is empty.
 	 * @return The parsed integer.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Integer nextUIntDef(String message, int defaultValue)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		Integer value = null;
 		do {
@@ -256,11 +322,10 @@ public class InputUtils {
 	 * Asks the user for a valid double.
 	 * @param message The message to display before waiting for input.
 	 * @return The parsed double.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Double nextDouble(String message)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		Double value = null;
 		do {
@@ -282,11 +347,10 @@ public class InputUtils {
 	 * @param message The message to display before waiting for input.
 	 * @param defaultValue The default value when the input is empty.
 	 * @return The parsed double.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Double nextDoubleDef(String message, double defaultValue)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		Double value = null;
 		do {
@@ -307,11 +371,10 @@ public class InputUtils {
 	 * Asks the user for a valid double greater than or equal to zero.
 	 * @param message The message to display before waiting for input.
 	 * @return The parsed double.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Double nextUDouble(String message)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		Double value = null;
 		do {
@@ -328,11 +391,10 @@ public class InputUtils {
 	 * @param message The message to display before waiting for input.
 	 * @param defaultValue The default value when the input is empty.
 	 * @return The parsed double.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Double nextUDoubleDef(String message, double defaultValue)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		Double value = null;
 		do {
@@ -348,11 +410,10 @@ public class InputUtils {
 	 * Asks the user for a valid boolean of yes or no.
 	 * @param message The message to display before waiting for input.
 	 * @return The parsed yes/no boolean.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Boolean nextBool(String message)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		message += " (y/n)";
 		String input = nextLine(message).toLowerCase();
@@ -372,11 +433,10 @@ public class InputUtils {
 	 * @param message The message to display before waiting for input.
 	 * @param defaultValue The default value when the input is empty.
 	 * @return The parsed yes/no boolean.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Boolean nextBoolDef(String message, boolean defaultValue)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		message += " (y/n)";
 		String input = next(message).toLowerCase();
@@ -397,11 +457,10 @@ public class InputUtils {
 	 * @param min The minimum value.
 	 * @param max The maximum value.
 	 * @return The parsed integer inside the range.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Integer nextRange(String message, int min, int max)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		message += String.format(" (%s-%s)", min, max);
 		Integer choice = null;
@@ -425,11 +484,10 @@ public class InputUtils {
 	 * @param max The maximum value.
 	 * @param defaultValue The default value when the input is empty.
 	 * @return The parsed integer inside the range.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static Integer nextRangeDef(String message, int min, int max, int defaultValue)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		message += String.format(" (%s-%s)", min, max);
 		Integer choice = null;
@@ -452,11 +510,10 @@ public class InputUtils {
 	 * @param message The message to display before waiting for input.
 	 * @param choices The valid choice strings.
 	 * @return A valid choice string.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static String nextChoice(String message, String... choices)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		String choice = null;
 		do {
@@ -479,11 +536,10 @@ public class InputUtils {
 	 * @param defaultValue The default value when the input is empty.
 	 * @param choices The valid choice strings.
 	 * @return A valid choice string.
-	 * @throws RequestExitException
-	 * @throws RequestBackException 
+	 * @throws RequestException
 	 */
 	public static String nextChoiceDef(String message, String defaultValue, String... choices)
-			throws RequestExitException, RequestBackException
+			throws RequestException
 	{
 		String choice = null;
 		do {

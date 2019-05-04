@@ -1,0 +1,7 @@
+﻿
+Currency Input Converter
+
+<     Type "ans" during input to convert the last answer.     
+<     Type "cancel" at any time to stop converting currencies.
+<     Currency Input Examples: 20USD (United States Dollar)   
+<             50.01 EUR (Euro), 100000 JPY (Japanese Yen)     

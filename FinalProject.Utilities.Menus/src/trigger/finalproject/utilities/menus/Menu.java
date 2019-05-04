@@ -1,14 +1,12 @@
 /*
  * Class Name: Menu
  * Author: Robert Jordan
- * Date Created: May 1, 2019
+ * Date Created: May 3, 2019
  * Synopsis: A basic implementation of screen that prints a text file and gives
  *           the user a range of choices.
  */
 package trigger.finalproject.utilities.menus;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Collection;
 import trigger.finalproject.utilities.*;
 
@@ -99,7 +97,7 @@ public class Menu extends Screen {
 	
 	// <editor-fold defaultstate="expanded" desc="Screen Overrides">
 	@Override
-	public void print() throws FileNotFoundException, IOException {
+	public void print(ScreenModule owner) throws Exception {
 		Console.clear();
 		String[] lines = FileUtils.readAllLines(textFile);
 		
@@ -153,7 +151,7 @@ public class Menu extends Screen {
 		Console.printLine();
 	}
 	@Override
-	public Screen run(ScreenModule owner) throws RequestExitException, RequestBackException {
+	public Screen run(ScreenModule owner) throws RequestException, Exception {
 		if (choices.length == 1) {
 			InputUtils.waitForInput("Press Enter");
 			return choices[0];
@@ -189,7 +187,7 @@ public class Menu extends Screen {
 	 * @param align The alignment to print the line with.
 	 * @return True if the token was handled, and should not be printed normally.
 	 */
-	protected boolean handleToken(String token, Align align) {
+	protected boolean handleToken(String token, Align align) throws Exception {
 		return false;
 	}
 	// </editor-fold>

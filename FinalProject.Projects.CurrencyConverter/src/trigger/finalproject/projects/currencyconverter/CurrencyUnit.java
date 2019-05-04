@@ -1,7 +1,7 @@
 /*
  * Class Name: CurrencyUnit
  * Author: Robert Jordan
- * Date Created: Mar 25, 2019
+ * Date Created: May 3, 2019
  * Synopsis: A currency unit and information pertaining to it.
  */
 package trigger.finalproject.projects.currencyconverter;
@@ -17,10 +17,12 @@ import java.util.logging.Logger;
  */
 public final class CurrencyUnit {
 	// <editor-fold defaultstate="collapsed" desc="Constants">
-	
+	/**
+	 * The path to the file documenting all supported Currency Units.
+	 */
 	public static final String UNITS_FILE = "CurrencyUnits.txt";
-	
 	// </editor-fold>
+	
 	// <editor-fold defaultstate="collapsed" desc="Static Fields">
 	/**
 	 * The dictionary of currency units.

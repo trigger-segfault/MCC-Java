@@ -1,9 +1,0 @@
-﻿
-What does the fo-..programmer say?
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~    
-   /  .-------------------.  \    
-   /  |    Hello World!   |  \    
-   /  `-------------------'  \    
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~    
-
-1. Back to the Project Selection

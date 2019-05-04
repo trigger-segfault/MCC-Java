@@ -43,7 +43,7 @@ public class JobApplicationViewMenu extends Menu {
 	
 	// <editor-fold defaultstate="expanded" desc="Menu Overrides">
 	@Override
-	public Screen run(ScreenModule owner) throws RequestExitException, RequestBackException {
+	public Screen run(ScreenModule owner) throws RequestException, Exception {
 		JobApplicationForm[] forms = new JobApplicationForm[0];
 		if (FileUtils.isFile(FORMS_FILE)) {
 			try {
@@ -55,17 +55,20 @@ public class JobApplicationViewMenu extends Menu {
 			}
 		}
 		
+		// Get the max number of digits in the week numbers
+		final int numberPadding = Math.max(1, (int) Math.log10(forms.length + 1) + 1);
+				
 		choices = new Screen[forms.length + 1];
 		for (int i = 0; i < forms.length; i++) {
 			JobApplicationForm form = forms[i];
 			Console.printLine("%s. %s submitted at %s",
-					StringUtils.padLeft(String.valueOf(i + 1), 2),
+					StringUtils.padLeft(String.valueOf(i + 1), numberPadding),
 					StringUtils.padRight(form.toString(), 40),
 					form.getTimestamp());
 			choices[i] = new JobApplicationPrintMenu(printTextFile, form);
 		}
 		Console.printLine("%s. Back to Job Application Menu",
-				StringUtils.padLeft(String.valueOf(forms.length + 1), 2));
+				StringUtils.padLeft(String.valueOf(forms.length + 1), numberPadding));
 		choices[forms.length] = ((ScreenModuleJobApplication) owner).MENU;
 		
 		Console.printLine();

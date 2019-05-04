@@ -1,14 +1,12 @@
 /*
  * Class Name: MissingFilesMenu
  * Author: Robert Jordan
- * Date Created: May 2, 2019
+ * Date Created: May 3, 2019
  * Synopsis: The menu to display when required files are missing from the
  *           program's search paths.
  */
 package trigger.finalproject.utilities.menus;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import trigger.finalproject.utilities.*;
 
 /**
@@ -53,7 +51,7 @@ public class MissingFilesMenu extends Menu {
 	
 	// <editor-fold defaultstate="expanded" desc="Menu Overrides">
 	@Override
-	public void print() throws FileNotFoundException, IOException {
+	public void print(ScreenModule owner) throws Exception {
 		if (!FileUtils.isFile(textFile)) {
 			Console.clear();
 			// Missing MissingFilesMenu text file, print a hardcoded menu instead
@@ -71,11 +69,11 @@ public class MissingFilesMenu extends Menu {
 			Console.printLine();
 		}
 		else {
-			super.print();
+			super.print(owner);
 		}
 	}
 	@Override
-	public Screen run(ScreenModule owner) throws RequestExitException, RequestBackException {
+	public Screen run(ScreenModule owner) {
 		Console.pressEnterToExit();
 		return ScreenAction.EXIT;
 	}

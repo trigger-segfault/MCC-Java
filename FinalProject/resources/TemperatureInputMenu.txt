@@ -1,0 +1,7 @@
+﻿
+Temperature Input Converter
+
+<     Type "ans" during input to convert the last answer.       
+<     Type "cancel" at any time to stop converting temperatures.
+<     Temperature Input Examples: 22C (Celsius)                 
+<              101F (Fahrenheit), 4000K (Kelvin)                

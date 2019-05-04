@@ -1,7 +1,10 @@
-﻿
+﻿<Robert Jordan                                                    Intro to Java
 Welcome to the Project Selection Menu
 
-Please make a selection:
+At any time during input, enter:             
+  "exit"    : stop the program               
+   "cancel"  : cancel the current operation  
+    "restart" : restart the current operation
 
 1. Hello World          
 2. Job Application      

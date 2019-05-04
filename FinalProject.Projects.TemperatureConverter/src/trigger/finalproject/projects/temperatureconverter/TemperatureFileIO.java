@@ -33,11 +33,11 @@ class TemperatureFileIO {
 	 * @throws FileNotFoundException
 	 * @throws UnsupportedEncodingException 
 	 */
-	public static void genTemperaturesFile(String path, Temperature minTemp, Temperature maxTemp,
-		int minCount, int maxCount) throws FileNotFoundException, UnsupportedEncodingException
+	public static void genTemperaturesFile(String path, Temperature minTemp, Temperature maxTemp)
+			throws FileNotFoundException, UnsupportedEncodingException
 	{
 		Random random = new Random();
-		int count = random.nextInt(maxCount + 1 - minCount) + minCount;
+		int count = 25;
 		double minC = minTemp.convert(TemperatureUnit.C).value;
 		double maxC = maxTemp.convert(TemperatureUnit.C).value;
 		try (PrintWriter writer = new PrintWriter(path, "UTF-8")) {

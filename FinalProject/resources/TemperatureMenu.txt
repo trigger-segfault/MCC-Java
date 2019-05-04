@@ -1,10 +1,9 @@
 ﻿
 Temperature Converter
 
-Choose how you would like to convert temperatures.
+Choose how you would like to convert temperatures:
 
-Please make a selection:
-
-1. Temperatures From Input      
-2. Temperatures From File       
-3. Back to the Project Selection
+1. Convert Temperatures Input   
+2. Convert Temperatures File    
+3. Generate Temperatures File   
+4. Back to the Project Selection
