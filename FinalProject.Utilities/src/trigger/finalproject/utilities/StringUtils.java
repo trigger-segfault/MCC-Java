@@ -1,7 +1,7 @@
 /*
  * Class Name: StringUtils
  * Author: Robert Jordan
- * Date Created: May 1, 2019
+ * Date Created: May 2, 2019
  * Synopsis: Utility functions for strings and characters.
  */
 package trigger.finalproject.utilities;
@@ -187,6 +187,98 @@ public class StringUtils {
 			case RIGHT: return padLeft(line, width);
 		}
 		return line;
+	}
+	// </editor-fold>
+	
+	// <editor-fold defaultstate="expanded" desc="Arguments">
+	/**
+	 * Takes a line and splits it into parts like arguments. Quotes are factored
+	 * in.
+	 * @param line The line to split.
+	 * @return An array of arguments in the line.
+	 */
+	public static String[] splitArgs(String line) {
+		line = line.trim();
+		ArrayList<String> parts = new ArrayList<>();
+		boolean started = true;
+		boolean escaped = false;
+		boolean quoted = false;
+		StringBuilder str = new StringBuilder();
+		for (int i = 0; i < line.length(); i++) {
+			char c = line.charAt(i);
+			if (escaped) {
+				str.append(c);
+				escaped = false;
+			}
+			else if (c == '\\') {
+				escaped = true;
+			}
+			else if (c == '"') {
+				quoted = !quoted;
+			}
+			else if (!quoted && Character.isWhitespace(c)) {
+				// Don't add empty gaps between whitespace
+				if (started) {
+					parts.add(str.toString());
+					str.setLength(0); // Clears the string builder
+					started = false;
+				}
+			}
+			else {
+				str.append(c);
+			}
+			
+			// Signal the part has started parsing
+			if (!started && !Character.isWhitespace(c))
+				started = true;
+		}
+		
+		// Add the final part to the list
+		if (started)
+			parts.add(str.toString());
+		
+		// Cast the array
+		String[] partArray = new String[parts.size()];
+		return parts.toArray(partArray);
+	}
+	/**
+	 * Joins arguments into a single line and quotes arguments that are empty
+	 * or contain whitespace.
+	 * @param args The arguments to join.
+	 * @return A single line with all the arguments.
+	 */
+	public static String joinArgs(String[] args) {
+		StringBuilder str = new StringBuilder();
+		
+		for (int i = 0; i < args.length; i++) {
+			if (i != 0)
+				str.append(' ');
+			String arg = args[i];
+			if (arg == null)
+				arg = "";
+			boolean needsQuotes = arg.isEmpty();
+			for (int j = 0; j < arg.length() && !needsQuotes; j++) {
+				if (Character.isWhitespace(arg.charAt(j)))
+					needsQuotes = true;
+			}
+			if (needsQuotes)
+				str.append('"');
+			
+			for (int j = 0; j < arg.length(); j++) {
+				char c = arg.charAt(j);
+				// Perform escapes
+				if (c == '\\')
+					str.append("\\\\");
+				else if (c == '"')
+					str.append("\\\"");
+				else
+					str.append(c);
+			}
+			if (needsQuotes)
+				str.append('"');
+		}
+		
+		return str.toString();
 	}
 	// </editor-fold>
 }

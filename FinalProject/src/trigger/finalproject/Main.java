@@ -1,7 +1,7 @@
 /*
  * Class Name: Main
  * Author: Robert Jordan
- * Date Created: May 1, 2019
+ * Date Created: May 2, 2019
  * Synopsis: The main class to run the final projection selection program.
  */
 package trigger.finalproject;
@@ -16,7 +16,7 @@ public class Main {
 	 * @throw Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		MainMenuDriver driver = new MainMenuDriver();
+		MainScreenDriver driver = new MainScreenDriver();
 		driver.run();
 	}
 }

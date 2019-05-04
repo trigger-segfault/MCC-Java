@@ -1,7 +1,7 @@
 /*
  * Class Name: FileUtils
  * Author: Robert Jordan
- * Date Created: May 1, 2019
+ * Date Created: May 2, 2019
  * Synopsis: Utility functions for files.
  */
 package trigger.finalproject.utilities;
@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -100,6 +101,53 @@ public class FileUtils {
 				writer.println(contents[i]);
 			}
 		}
+	}
+	/**
+	 * Appends the text to the end of the file.
+	 * @param path The path to the file to write to.
+	 * @param content The text to append to the file.
+	 * @throws FileNotFoundException The file could not be found for writing.
+	 * @throws IOException An I/O error occurred.
+	 */
+	public static void appendText(String path, String content)
+			throws FileNotFoundException, IOException
+	{
+		try (FileWriter fileWriter = new FileWriter(path, true)) {
+		try (PrintWriter writer = new PrintWriter(fileWriter)) {
+			writer.print(content);
+		}}
+	}
+	/**
+	 * Appends the line to the end of the file.
+	 * @param path The path to the file to write to.
+	 * @param content The line to append to the file.
+	 * @throws FileNotFoundException The file could not be found for writing.
+	 * @throws IOException An I/O error occurred.
+	 */
+	public static void appendLine(String path, String content)
+			throws FileNotFoundException, IOException
+	{
+		try (FileWriter fileWriter = new FileWriter(path, true)) {
+		try (PrintWriter writer = new PrintWriter(fileWriter)) {
+			writer.println(content);
+		}}
+	}
+	/**
+	 * Appends the lines to the end of the file.
+	 * @param path The path to the file to write to.
+	 * @param contents The lines to append to the file.
+	 * @throws FileNotFoundException The file could not be found for writing.
+	 * @throws IOException An I/O error occurred.
+	 */
+	public static void appendLines(String path, String[] contents)
+			throws FileNotFoundException, IOException
+	{
+		try (FileWriter fileWriter = new FileWriter(path, true)) {
+		try (PrintWriter writer = new PrintWriter(fileWriter)) {
+			for (int i = 0; i < contents.length; i++) {
+				writer.println(contents[i]);
+			}
+		}}
 	}
 	// </editor-fold>
 	

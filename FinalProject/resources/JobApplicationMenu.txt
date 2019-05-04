@@ -1,6 +1,6 @@
 ﻿
-Job Application Form
+Job Application Menu
 
-TODO
-
-1. Back to the Project Selection
+1. Submit a Job Application     
+2. Review all Job Applications  
+3. Back to the Project Selection
