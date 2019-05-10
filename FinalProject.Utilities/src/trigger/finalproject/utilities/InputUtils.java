@@ -10,21 +10,10 @@ package trigger.finalproject.utilities;
  * Utility methods for special input handling.
  */
 public class InputUtils {
-	// <editor-fold defaultstate="collapsed" desc="Constants">
-	/**
-	 * The input value used when the user requests to exit the program.
 	 */
 	private static final String EXIT = "exit";
 	/**
 	 * The input value used when the user requests to go back to the menu.
-	 */
-	private static final String BACK = "back";
-	/**
-	 * The input value used to use the last answer for temperature conversion.
-	 */
-	//private static final String LAST_ANSWER = "ans";
-	// </editor-fold>
-	
 	// <editor-fold defaultstate="expanded" desc="WaitForInput">
 	/**
 	 * Waits for the user to press enter.
