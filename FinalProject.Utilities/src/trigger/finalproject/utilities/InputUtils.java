@@ -10,10 +10,6 @@ package trigger.finalproject.utilities;
  * Utility methods for special input handling.
  */
 public class InputUtils {
-	 */
-	private static final String EXIT = "exit";
-	/**
-	 * The input value used when the user requests to go back to the menu.
 	// <editor-fold defaultstate="expanded" desc="WaitForInput">
 	/**
 	 * Waits for the user to press enter.
